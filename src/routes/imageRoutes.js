@@ -12,10 +12,10 @@ import { lockApi } from "../config/jwt.js";
 const imageRoutes = express.Router();
 
 // Danh sách ảnh về
-imageRoutes.get("/list-img", lockApi, fetchImageApi);
+imageRoutes.get("/list-img", fetchImageApi);
 
 // Tìm kiếm danh sách ảnh theo tên
-imageRoutes.get("/list-img-by-name/:tenHinh", lockApi, getListImageByName);
+imageRoutes.get("/list-img-by-name/:tenHinh", getListImageByName);
 
 // Danh sách ảnh đã tạo theo user id
 imageRoutes.get("/list-img-by-user", lockApi, getListImageByUser);

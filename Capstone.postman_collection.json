@@ -29,15 +29,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/user/update-user",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"user",
-						"update-user"
-					]
+					"path": ["api", "user", "update-user"]
 				}
 			},
 			"response": []
@@ -68,16 +62,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/img-detail/13",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"img-detail",
-						"13"
-					]
+					"path": ["api", "image", "img-detail", "13"]
 				}
 			},
 			"response": []
@@ -96,16 +83,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/comment/comment-info/1",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"comment",
-						"comment-info",
-						"1"
-					]
+					"path": ["api", "comment", "comment-info", "1"]
 				}
 			},
 			"response": []
@@ -124,16 +104,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/save-img/check-save/2",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"save-img",
-						"check-save",
-						"2"
-					]
+					"path": ["api", "save-img", "check-save", "2"]
 				}
 			},
 			"response": []
@@ -161,16 +134,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/comment/save-comment/13",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"comment",
-						"save-comment",
-						"13"
-					]
+					"path": ["api", "comment", "save-comment", "13"]
 				}
 			},
 			"response": []
@@ -189,15 +155,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/list-img",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"list-img"
-					]
+					"path": ["api", "image", "list-img"]
 				}
 			},
 			"response": []
@@ -223,16 +183,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/list-img-by-name/sun",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"list-img-by-name",
-						"sun"
-					]
+					"path": ["api", "image", "list-img-by-name", "sun"]
 				}
 			},
 			"response": []
@@ -263,15 +216,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/user/user-info",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"user",
-						"user-info"
-					]
+					"path": ["api", "user", "user-info"]
 				}
 			},
 			"response": []
@@ -290,15 +237,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/save-img/list-img-saved",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"save-img",
-						"list-img-saved"
-					]
+					"path": ["api", "save-img", "list-img-saved"]
 				}
 			},
 			"response": []
@@ -317,15 +258,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/list-img-by-user",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"list-img-by-user"
-					]
+					"path": ["api", "image", "list-img-by-user"]
 				}
 			},
 			"response": []
@@ -353,15 +288,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/img-delete",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"img-delete"
-					]
+					"path": ["api", "image", "img-delete"]
 				}
 			},
 			"response": []
@@ -389,15 +318,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/image/create-image",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"image",
-						"create-image"
-					]
+					"path": ["api", "image", "create-image"]
 				}
 			},
 			"response": []
@@ -425,15 +348,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/user/signUp",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"user",
-						"signUp"
-					]
+					"path": ["api", "user", "signUp"]
 				}
 			},
 			"response": []
@@ -461,15 +378,9 @@
 				"url": {
 					"raw": "http://localhost:8080/api/user/login",
 					"protocol": "http",
-					"host": [
-						"localhost"
-					],
+					"host": ["localhost"],
 					"port": "8080",
-					"path": [
-						"api",
-						"user",
-						"login"
-					]
+					"path": ["api", "user", "login"]
 				}
 			},
 			"response": []
