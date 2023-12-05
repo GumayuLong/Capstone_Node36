@@ -8,7 +8,7 @@ import {
 const saveimgRoutes = express.Router();
 
 // Danh sách ảnh đã lưu theo user id
-saveimgRoutes.get("/list-img-saved", lockApi, getListImgSaved);
+saveimgRoutes.get("/list-img-saved/:userId", getListImgSaved);
 
 // Thông tin đã lưu hình này chưa theo id ảnh (dùng để kiểm tra ảnh đã lưu hay chưa ở nút SAVE)
 saveimgRoutes.get("/check-save/:imgId", lockApi, checkSavedImg);

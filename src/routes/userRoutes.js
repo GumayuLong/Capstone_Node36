@@ -6,7 +6,7 @@ const userRoutes = express.Router();
 
 userRoutes.post("/login", login);
 userRoutes.post("/signUp", signUp);
-userRoutes.get("/user-info", lockApi, userInfo);
-userRoutes.put("/update-user", lockApi, updateUser);
+userRoutes.get("/user-info", userInfo);
+userRoutes.put("/update-user/:id", lockApi, updateUser);
 
 export default userRoutes;

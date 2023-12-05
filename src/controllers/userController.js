@@ -1,3 +1,5 @@
+/** @format */
+
 import { Prisma, PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import bcrypt from "bcrypt";
@@ -20,13 +22,13 @@ const login = async (req, res) => {
 			if (checkPassword) {
 				let token = createToken({ data: checkEmail });
 				res.send(`Token user: ${token}`);
-				return;
+				return token;
 			} else {
 				res.status(400).send("Email hoặc password không đúng!");
 				return;
 			}
 		}
-		res.status(200).send("Login thành công");
+		// res.status(200).send("Login thành công");
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -65,20 +67,8 @@ const signUp = async (req, res) => {
 // Thông tin user
 const userInfo = async (req, res) => {
 	try {
-		let { token } = req.headers;
-		let dctoken = decodeToken(token);
-		let { nguoi_dung_id } = dctoken.data.data;
-
-		let infoUser = await prisma.nguoi_dung.findFirst({
-			where: {
-				nguoi_dung_id,
-			},
-		});
-		if (infoUser) {
-			res.status(200).send(infoUser);
-		} else {
-			res.status(400).send("Không tồn tại user!");
-		}
+		let getInfo = await prisma.nguoi_dung.findMany();
+		res.status(200).send(getInfo)
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -87,33 +77,42 @@ const userInfo = async (req, res) => {
 // Chỉnh sửa thông tin user
 const updateUser = async (req, res) => {
 	let { ho_ten, mat_khau, tuoi, anh_dai_dien } = req.body;
+	let {id}= req.params;
 	try {
 		let { token } = req.headers;
 		let dctoken = decodeToken(token);
-		let { nguoi_dung_id } = dctoken.data.data;
 		let infoUser = await prisma.nguoi_dung.findFirst({
 			where: {
-				nguoi_dung_id,
+				nguoi_dung_id: dctoken.data.data.nguoi_dung_id,
 			},
 		});
 		if (infoUser) {
-			let hidePassword = bcrypt.hashSync(mat_khau, 5);
-			let updateData = {
-				...infoUser,
-				mat_khau: hidePassword,
-				ho_ten,
-				tuoi,
-				anh_dai_dien,
-			};
-			let update = await prisma.nguoi_dung.update({
+			let checkId = await prisma.nguoi_dung.findFirst({
 				where: {
-					nguoi_dung_id,
+					nguoi_dung_id: Number(id),
 				},
-				data: updateData,
 			});
-			res.status(200).send(update);
+			if(checkId) {
+				let hidePassword = bcrypt.hashSync(mat_khau, 5);
+				let updateData = {
+					...checkId,
+					mat_khau: hidePassword,
+					ho_ten,
+					tuoi,
+					anh_dai_dien,
+				};
+				let update = await prisma.nguoi_dung.update({
+					where: {
+						nguoi_dung_id: Number(id),
+					},
+					data: updateData,
+				});
+				res.status(200).send(update);
+			} else {
+				res.status(404).send("User không tồn tại!");
+			}
 		} else {
-			res.status(400).send("Không tồn tại user!");
+			res.status(400).send("Không có quyền truy cập!");
 		}
 		res.status(200).send("Update thành công");
 	} catch (err) {

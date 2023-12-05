@@ -7,19 +7,353 @@
 	},
 	"item": [
 		{
+			"name": "Login, Signup",
+			"item": [
+				{
+					"name": "Đăng ký",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"robinnhi125@gmail.com\",\n    \"mat_khau\": \"longvip5\",\n    \"ho_ten\": \"Long Tô\",\n    \"tuoi\": 21\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/signUp",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "user", "signUp"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Đăng nhập",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"robinnhi125@gmail.com\",\n    \"mat_khau\": \"longvip5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/login",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "user", "login"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Home",
+			"item": [
+				{
+					"name": "Danh sách ảnh về",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/image/list-img",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "list-img"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tìm kiếm danh sách ảnh theo tên",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/image/list-img-by-name/sun",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "list-img-by-name", "sun"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang chi tiết",
+			"item": [
+				{
+					"name": "Thông tin ảnh và người tạo ảnh bằng id ảnh",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/image/img-detail/2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "img-detail", "2"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thông tin bình luận theo id ảnh",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/comment/comment-info/17",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "comment", "comment-info", "17"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Thông tin đã lưu hình này chưa theo id ảnh (dùng để kiểm tra ảnh đã lưu hay chưa ở nút SAVE)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MjIsImVtYWlsIjoicm9iaW5uaGkxMjVAZ21haWwuY29tIiwibWF0X2toYXUiOiIkMmIkMTAkMG1GQUxVRHZ1aTFZa1puL3gzeHpMT2NESDg5VWhTQ3ZjUXl3bTFLNGtEQUxjeXhmMDMxQksiLCJob190ZW4iOiJMb25nIFTDtCIsInR1b2kiOjIxLCJhbmhfZGFpX2RpZW4iOiIifX0sImlhdCI6MTcwMTc4MDYzMiwiZXhwIjoxNzAxNzk4NjMyfQ.CmcfhommRzOWaiS-CFyxD1Ncnf5VvyGYw_n_E23k2No",
+								"type": "text"
+							},
+							{
+								"key": "userid",
+								"value": "11",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/save-img/check-save/2",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "save-img", "check-save", "2"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Để lưu thông tin bình luận của người dùng với hình ảnh",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MjIsImVtYWlsIjoicm9iaW5uaGkxMjVAZ21haWwuY29tIiwibWF0X2toYXUiOiIkMmIkMTAkMG1GQUxVRHZ1aTFZa1puL3gzeHpMT2NESDg5VWhTQ3ZjUXl3bTFLNGtEQUxjeXhmMDMxQksiLCJob190ZW4iOiJMb25nIFTDtCIsInR1b2kiOjIxLCJhbmhfZGFpX2RpZW4iOiIifX0sImlhdCI6MTcwMTc4MDYzMiwiZXhwIjoxNzAxNzk4NjMyfQ.CmcfhommRzOWaiS-CFyxD1Ncnf5VvyGYw_n_E23k2No",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nguoi_dung_id\": 22,\n    \"noi_dung\": \"Iphone 14 pro thật là đẹp !\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/comment/save-comment/13",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "comment", "save-comment", "13"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trang quản lý ảnh",
+			"item": [
+				{
+					"name": "Thông tin user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/user/user-info",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "user", "user-info"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Danh sách ảnh đã lưu theo user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/save-img/list-img-saved/21",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "save-img", "list-img-saved", "21"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Danh sách ảnh đã tạo theo user id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/image/list-img-by-user/11",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "list-img-by-user", "11"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Xóa ảnh đã tạo theo id ảnh",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MjIsImVtYWlsIjoicm9iaW5uaGkxMjVAZ21haWwuY29tIiwibWF0X2toYXUiOiIkMmIkMTAkMG1GQUxVRHZ1aTFZa1puL3gzeHpMT2NESDg5VWhTQ3ZjUXl3bTFLNGtEQUxjeXhmMDMxQksiLCJob190ZW4iOiJMb25nIFTDtCIsInR1b2kiOjIxLCJhbmhfZGFpX2RpZW4iOiIifX0sImlhdCI6MTcwMTc4MDYzMiwiZXhwIjoxNzAxNzk4NjMyfQ.CmcfhommRzOWaiS-CFyxD1Ncnf5VvyGYw_n_E23k2No",
+								"type": "text"
+							},
+							{
+								"key": "idhinh",
+								"value": "19",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/image/img-delete",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "img-delete"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Thêm ảnh",
+			"item": [
+				{
+					"name": "Thêm một ảnh của user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MjIsImVtYWlsIjoicm9iaW5uaGkxMjVAZ21haWwuY29tIiwibWF0X2toYXUiOiIkMmIkMTAkMG1GQUxVRHZ1aTFZa1puL3gzeHpMT2NESDg5VWhTQ3ZjUXl3bTFLNGtEQUxjeXhmMDMxQksiLCJob190ZW4iOiJMb25nIFTDtCIsInR1b2kiOjIxLCJhbmhfZGFpX2RpZW4iOiIifX0sImlhdCI6MTcwMTc4MDYzMiwiZXhwIjoxNzAxNzk4NjMyfQ.CmcfhommRzOWaiS-CFyxD1Ncnf5VvyGYw_n_E23k2No",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"ten_hinh\": \"iphone12mini\",\n    \"duong_dan\": \"path/to/ip7mini.jpg\",\n    \"mo_ta\": \"qua dep luon ahihi!\",\n    \"nguoi_dung_id\": 22\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/image/create-image",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8080",
+							"path": ["api", "image", "create-image"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Chỉnh sửa thông tin cá nhân",
+			"item": []
+		},
+		{
 			"name": "Thông tin cá nhân của user",
 			"request": {
 				"method": "PUT",
 				"header": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MjIsImVtYWlsIjoicm9iaW5uaGkxMjVAZ21haWwuY29tIiwibWF0X2toYXUiOiIkMmIkMTAkMG1GQUxVRHZ1aTFZa1puL3gzeHpMT2NESDg5VWhTQ3ZjUXl3bTFLNGtEQUxjeXhmMDMxQksiLCJob190ZW4iOiJMb25nIFTDtCIsInR1b2kiOjIxLCJhbmhfZGFpX2RpZW4iOiIifX0sImlhdCI6MTcwMTc4MDYzMiwiZXhwIjoxNzAxNzk4NjMyfQ.CmcfhommRzOWaiS-CFyxD1Ncnf5VvyGYw_n_E23k2No",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"mat_khau\": \"123456\",\n    \"ho_ten\": \"Long ToBi\",\n    \"tuoi\": 18,\n    \"anh_dai_dien\": \"path/to/avatar11.jpg\"\n}",
+					"raw": "{\n    \"mat_khau\": \"123\",\n    \"ho_ten\": \"Long ToBiRaMa\",\n    \"tuoi\": 19,\n    \"anh_dai_dien\": \"path/to/avatar21.jpg\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -27,360 +361,11 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/user/update-user",
+					"raw": "http://localhost:8080/api/user/update-user/21",
 					"protocol": "http",
 					"host": ["localhost"],
 					"port": "8080",
-					"path": ["api", "user", "update-user"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Thông tin ảnh và người tạo ảnh bằng id ảnh",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/image/img-detail/13",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "img-detail", "13"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Thông tin bình luận theo id ảnh",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/api/comment/comment-info/1",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "comment", "comment-info", "1"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Thông tin đã lưu hình này chưa theo id ảnh (dùng để kiểm tra ảnh đã lưu hay chưa ở nút SAVE)",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/api/save-img/check-save/2",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "save-img", "check-save", "2"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Để lưu thông tin bình luận của người dùng với hình ảnh",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"noi_dung\": \"Iphone 14 pro thật là đẹp !\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/comment/save-comment/13",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "comment", "save-comment", "13"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Danh sách ảnh về",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/api/image/list-img",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "list-img"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Tìm kiếm danh sách ảnh theo tên",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/image/list-img-by-name/sun",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "list-img-by-name", "sun"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Thông tin user",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/user/user-info",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "user", "user-info"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Danh sách ảnh đã lưu theo user id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/api/save-img/list-img-saved",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "save-img", "list-img-saved"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Danh sách ảnh đã tạo theo user id",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JExhQVFmRVhSWUFVQmVRVjJrWUdQQy5LWnFSTC9ETkdvUy5PV1VzOEFYYlYwdHZjeGhybEx1IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwNzQ4NzIsImV4cCI6MTg1ODg2Mjg3Mn0.UE5284-JvgGTcf8xMhTEKLYL8esj_U0Cof3ngC_YzJ8",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "http://localhost:8080/api/image/list-img-by-user",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "list-img-by-user"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Xóa ảnh đã tạo theo id ảnh",
-			"request": {
-				"method": "DELETE",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"hinh_id\": 11\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/image/img-delete",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "img-delete"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Thêm một ảnh của user",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOnsibmd1b2lfZHVuZ19pZCI6MTEsImVtYWlsIjoibG9uZ3RvMTI1QGdtYWlsLmNvbSIsIm1hdF9raGF1IjoiJDJiJDA1JHpua05JaDJJNFVqNHBFbElYRE50WC4zMW1CS21LdW0vU1pqTEV5M3hqUmFMNjVJd1c0QmJ5IiwiaG9fdGVuIjoiTG9uZyBUb0JpIiwidHVvaSI6MTgsImFuaF9kYWlfZGllbiI6InBhdGgvdG8vYXZhdGFyMTEuanBnIn19LCJpYXQiOjE3MDEwODc4MzcsImV4cCI6MTcwMTEwNTgzN30.n6huxK_gh5GQtRHmVCQbzae206jKFrM-xPJ0nkpX9MA",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"ten_hinh\": \"iphone12mini\",\n    \"duong_dan\": \"path/to/ip12mini.jpg\",\n    \"mo_ta\": \"qua dep luon a!\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/image/create-image",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "image", "create-image"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Đăng ký",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accessToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOiJ0b3RoYW5obG9uZzIwMDJAZ21haWwuY29tIn0sImlhdCI6MTcwMTA3NjMyMywiZXhwIjoxODU4ODY0MzIzfQ.qZ850rD7WtbkIBwySJb_0lm0cgbd6rGT3KqgzcP8ztk",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"ptm@gmail.com\",\n    \"mat_khau\": \"longvip5\",\n    \"ho_ten\": \"Tue My\",\n    \"tuoi\": 21\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/user/signUp",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "user", "signUp"]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Đăng nhập",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "accessToken",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGEiOiJ0b3RoYW5obG9uZzIwMDJAZ21haWwuY29tIn0sImlhdCI6MTcwMTA3NjMyMywiZXhwIjoxODU4ODY0MzIzfQ.qZ850rD7WtbkIBwySJb_0lm0cgbd6rGT3KqgzcP8ztk",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"email\": \"longto125@gmail.com\",\n    \"mat_khau\": \"123\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/user/login",
-					"protocol": "http",
-					"host": ["localhost"],
-					"port": "8080",
-					"path": ["api", "user", "login"]
+					"path": ["api", "user", "update-user", "21"]
 				}
 			},
 			"response": []

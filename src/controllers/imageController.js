@@ -1,3 +1,5 @@
+/** @format */
+
 import { PrismaClient } from "@prisma/client";
 import { decodeToken } from "../config/jwt.js";
 const prisma = new PrismaClient();
@@ -23,7 +25,7 @@ const getListImageByName = async (req, res) => {
 				},
 			},
 		});
-		if(listImg.length !== 0){
+		if (listImg.length !== 0) {
 			res.status(200).send(listImg);
 		} else {
 			res.status(404).send("Không tìm thấy ảnh!");
@@ -35,7 +37,7 @@ const getListImageByName = async (req, res) => {
 
 // Thêm một ảnh của user
 const createImage = async (req, res) => {
-	let { ten_hinh, duong_dan, mo_ta } = req.body;
+	let { ten_hinh, duong_dan, mo_ta, nguoi_dung_id } = req.body;
 	try {
 		let { token } = req.headers;
 		let dctoken = decodeToken(token);
@@ -50,13 +52,13 @@ const createImage = async (req, res) => {
 				ten_hinh,
 				duong_dan,
 				mo_ta,
-				nguoi_dung_id,
+				nguoi_dung_id: req.body.nguoi_dung_id,
 			};
 			let result = await prisma.hinh_anh.create({ data: newImage });
 			res.status(200).send(result);
 			return;
 		} else {
-			res.send("Không tồn tại user");
+			res.send("Không có quyền truy cập!");
 		}
 	} catch (err) {
 		res.status(400).send(err);
@@ -66,18 +68,16 @@ const createImage = async (req, res) => {
 // Danh sách ảnh đã tạo theo user id
 const getListImageByUser = async (req, res) => {
 	try {
-		let { token } = req.headers;
-		let dctoken = decodeToken(token);
-		let { nguoi_dung_id } = dctoken.data.data;
+		let { userId } = req.params;
 		let infoUser = await prisma.nguoi_dung.findFirst({
 			where: {
-				nguoi_dung_id,
+				nguoi_dung_id: Number(userId),
 			},
 		});
 		if (infoUser) {
 			let data = await prisma.hinh_anh.findMany({
 				where: {
-					nguoi_dung_id,
+					nguoi_dung_id: Number(userId),
 				},
 			});
 			res.status(200).send(data);
@@ -92,31 +92,19 @@ const getListImageByUser = async (req, res) => {
 // Thông tin ảnh và người tạo ảnh theo id ảnh
 const imageDetail = async (req, res) => {
 	try {
-		let { token } = req.headers;
-		let dctoken = decodeToken(token);
-		let { nguoi_dung_id } = dctoken.data.data;
-		let infoUser = await prisma.nguoi_dung.findFirst({
+		let { imgId } = req.params;
+		let data = await prisma.hinh_anh.findFirst({
 			where: {
-				nguoi_dung_id,
+				hinh_id: Number(imgId),
+			},
+			include: {
+				nguoi_dung: true,
 			},
 		});
-		if (infoUser) {
-			let { imgId } = req.params;
-			let data = await prisma.hinh_anh.findFirst({
-				where: {
-					hinh_id: Number(imgId),
-				},
-				include: {
-					nguoi_dung: true,
-				},
-			});
-			if (data) {
-				res.status(200).send(data);
-			} else {
-				res.status(404).send("Ảnh không tồn tại");
-			}
+		if (data) {
+			res.status(200).send(data);
 		} else {
-			res.status(400).send("Không tồn tại user");
+			res.status(404).send("Ảnh không tồn tại");
 		}
 	} catch (err) {
 		res.status(400).send(err);
@@ -126,7 +114,7 @@ const imageDetail = async (req, res) => {
 // Xóa ảnh đã tạo theo id ảnh
 const deleteImage = async (req, res) => {
 	try {
-		let { hinh_id } = req.body;
+		let { idhinh } = req.headers;
 		let { token } = req.headers;
 		let dctoken = decodeToken(token);
 		let { nguoi_dung_id } = dctoken.data.data;
@@ -141,7 +129,7 @@ const deleteImage = async (req, res) => {
 		if (infoUser) {
 			const deleteImg = await prisma.hinh_anh.delete({
 				where: {
-					hinh_id,
+					hinh_id: Number(idhinh),
 				},
 			});
 			if (deleteImg) {
@@ -152,7 +140,7 @@ const deleteImage = async (req, res) => {
 				res.status(400).send("Hình không tồn tại!");
 			}
 		} else {
-			res.status(400).send("Không tồn tại user");
+			res.status(400).send("Không có quyền truy cập!");
 		}
 	} catch (err) {
 		res.status(400).send(err);

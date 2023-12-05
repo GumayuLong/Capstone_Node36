@@ -8,15 +8,24 @@ const prisma = new PrismaClient();
 const getCommentBaseOnImg = async (req, res) => {
 	try {
 		let { imgId } = req.params;
-		let data = await prisma.binh_luan.findMany({
+		let checkIdHinh = await prisma.hinh_anh.findFirst({
 			where: {
 				hinh_id: Number(imgId),
 			},
 		});
-		if (data.length !== 0 && data) {
-			res.status(200).send(data);
+		if (checkIdHinh) {
+			let data = await prisma.binh_luan.findMany({
+				where: {
+					hinh_id: Number(imgId),
+				},
+			});
+			if (data.length !== 0 && data) {
+				res.status(200).send(data);
+			} else {
+				res.status(404).send("Không có bình luận nào!");
+			}
 		} else {
-			res.status(404).send("Không có bình luận nào!");
+			res.status(404).send("Không tồn tại hình này");
 		}
 	} catch (err) {
 		res.status(400).send(err);
@@ -38,7 +47,7 @@ const saveComment = async (req, res) => {
 			let { imgId } = req.params;
 			let { noi_dung } = req.body;
 			let saveComment = {
-				nguoi_dung_id,
+				nguoi_dung_id: req.body.nguoi_dung_id,
 				hinh_id: Number(imgId),
 				ngay_binh_luan: new Date(),
 				noi_dung,

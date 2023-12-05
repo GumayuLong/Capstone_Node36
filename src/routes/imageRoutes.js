@@ -18,13 +18,13 @@ imageRoutes.get("/list-img", fetchImageApi);
 imageRoutes.get("/list-img-by-name/:tenHinh", getListImageByName);
 
 // Danh sách ảnh đã tạo theo user id
-imageRoutes.get("/list-img-by-user", lockApi, getListImageByUser);
+imageRoutes.get("/list-img-by-user/:userId", getListImageByUser);
 
 // Thêm một ảnh của user
 imageRoutes.post("/create-image", lockApi, createImage);
 
 // Thông tin ảnh và người tạo ảnh bằng id ảnh
-imageRoutes.get("/img-detail/:imgId", lockApi, imageDetail);
+imageRoutes.get("/img-detail/:imgId", imageDetail);
 
 // Xóa ảnh đã tạo theo id ảnh
 imageRoutes.delete("/img-delete", lockApi, deleteImage);
