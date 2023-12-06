@@ -1,3 +1,5 @@
+/** @format */
+
 import { PrismaClient } from "@prisma/client";
 import { decodeToken } from "../config/jwt.js";
 const prisma = new PrismaClient();
@@ -5,7 +7,7 @@ const prisma = new PrismaClient();
 // Danh sách ảnh đã lưu theo user id
 const getListImgSaved = async (req, res) => {
 	try {
-		let {userId} = req.params;
+		let { userId } = req.params;
 		let infoUser = await prisma.nguoi_dung.findFirst({
 			where: {
 				nguoi_dung_id: Number(userId),
@@ -17,7 +19,7 @@ const getListImgSaved = async (req, res) => {
 					nguoi_dung_id: Number(userId),
 				},
 			});
-			if(data.length !== 0) {
+			if (data.length !== 0) {
 				res.status(200).send(data);
 			} else {
 				res.status(400).send("User này chưa lưu ảnh nào!");
@@ -47,14 +49,14 @@ const checkSavedImg = async (req, res) => {
 			let checkId = await prisma.nguoi_dung.findFirst({
 				where: {
 					nguoi_dung_id: Number(userid),
-				}
-			})
+				},
+			});
 			if (checkId) {
 				let checkHinh = await prisma.hinh_anh.findFirst({
 					where: {
 						hinh_id: Number(imgId),
-					}
-				})
+					},
+				});
 				if (checkHinh) {
 					let checkSaved = await prisma.luu_anh.findFirst({
 						where: {

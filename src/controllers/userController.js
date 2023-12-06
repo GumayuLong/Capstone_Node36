@@ -68,7 +68,7 @@ const signUp = async (req, res) => {
 const userInfo = async (req, res) => {
 	try {
 		let getInfo = await prisma.nguoi_dung.findMany();
-		res.status(200).send(getInfo)
+		res.status(200).send(getInfo);
 	} catch (err) {
 		res.status(400).send(err);
 	}
@@ -77,7 +77,7 @@ const userInfo = async (req, res) => {
 // Chỉnh sửa thông tin user
 const updateUser = async (req, res) => {
 	let { ho_ten, mat_khau, tuoi, anh_dai_dien } = req.body;
-	let {id}= req.params;
+	let { id } = req.params;
 	try {
 		let { token } = req.headers;
 		let dctoken = decodeToken(token);
@@ -92,7 +92,7 @@ const updateUser = async (req, res) => {
 					nguoi_dung_id: Number(id),
 				},
 			});
-			if(checkId) {
+			if (checkId) {
 				let hidePassword = bcrypt.hashSync(mat_khau, 5);
 				let updateData = {
 					...checkId,
